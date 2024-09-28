@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'index.css' %}" />
+    <title>Alexa Assistant</title>
+  </head>
+  <body>
+    <div class="bimage">
+      <img
+        src="{% static '8FLR.gif' %}"
+        alt="background image"
+        style="width: 160px"
+      />
+    </div>
+
+    <div class="name-item">
+      <h1>Hi, I'm Jarvis. What can I do for you?</h1>
+
+      <!-- Form to trigger listening for commands -->
+      <form method="POST" action="{% url 'alexa' %}">
+        {% csrf_token %}
+        <button type="submit" id="startButton" onclick="startListening()">
+          Start Listening
+        </button>
+      </form>
+
+      <!-- GIF to show after button is clicked -->
+      <img
+        id="listeningGif"
+        src="{% static 'jarvis.gif' %}"
+        alt="Listening..."
+        style="display: none"
+      />
+    </div>
+
+    <script>
+      function startListening() {
+        document.getElementById("startButton").style.display = "none";
+        document.getElementById("listeningGif").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
