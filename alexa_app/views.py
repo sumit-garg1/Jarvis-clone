@@ -5,6 +5,7 @@ import time
 import webbrowser
 import os
 # import pyaudio
+import sounddevice as sd
 from googlesearch import search
 
 # Initialize the recognizer
@@ -17,7 +18,7 @@ def speak(text):
     engine.setProperty("voice", voices[0])
     
     engine.say(text)
-    engine.runAndWait()
+    # engine.runAndWait()
     engine.stop()  # Ensure the event loop is stopped after speaking
 
 def get_command():
@@ -51,7 +52,7 @@ def alexa(request):
 
             # Handle 'time' command
             elif 'time' in command:
-                command = command.replace('time', '')
+                command = command.replace('time', '').strip()
                 t = time.localtime()
                 current_time = time.strftime("%H:%M:%S", t)
                 print(current_time)
