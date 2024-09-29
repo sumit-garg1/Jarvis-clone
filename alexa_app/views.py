@@ -4,7 +4,7 @@ from django.shortcuts import render
 import time
 import webbrowser
 import os
-import pyaudio
+# import pyaudio
 from googlesearch import search
 
 # Initialize the recognizer
