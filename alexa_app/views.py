@@ -4,8 +4,7 @@ from django.shortcuts import render
 import time
 import webbrowser
 import os
-# import pyaudio
-import sounddevice as sd
+import pyaudio
 from googlesearch import search
 
 # Initialize the recognizer
@@ -18,7 +17,7 @@ def speak(text):
     engine.setProperty("voice", voices[0])
     
     engine.say(text)
-    # engine.runAndWait()
+    engine.runAndWait()
     engine.stop()  # Ensure the event loop is stopped after speaking
 
 def get_command():
