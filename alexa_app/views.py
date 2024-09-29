@@ -36,7 +36,7 @@ def alexa(request):
         command = get_command()
 
         if command is None:  # If no command is recognized, continue listening
-            return render(request, "index.html")
+            return render(request, "alexa.html")
 
         if 'jarvis' in command:  # Trigger Alexa with the wake word
             command = command.replace('jarvis', '').strip()
@@ -96,4 +96,4 @@ def alexa(request):
                 speak("Sorry, I didn't understand that command.")
 
     # Render the page again after handling the command
-    return render(request, "index.html")
+    return render(request, "alexa.html")
