@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'alexa_project.wsgi.application'
+WSGI_APPLICATION = 'alexa_project.wsgi.application'
 
 
 # Database
