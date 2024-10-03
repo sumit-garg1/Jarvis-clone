@@ -13,7 +13,7 @@ def speak(text):
     # Reinitialize the engine to avoid the "run loop already started" error
     engine = pyttsx3.init()
     voices = engine.getProperty("voices")
-    engine.setProperty("voice", voices[0])  # Using default voice (index 0)
+    engine.setProperty("voice", voices[1])  # Using default voice (index 0)
     
     engine.say(text)
     engine.runAndWait()
@@ -49,12 +49,19 @@ def alexa(request):
 
         if command is None:  # If no command is recognized, continue listening
             return render(request, "alexa.html")
-
+        
+        if 'hello jarvis' in command:
+                speak("Hello Sir. i am jarvis ai assistant. How may i help you?")
+                return render(request, "alexa.html")
         if 'jarvis' in command:  # Trigger Alexa with the wake word 'Jarvis'
             command = command.replace('jarvis', '').strip()
 
             # Handle 'play' command
-            if 'play' in command:
+                
+            if 'who made you' in command:
+                speak("I was created by Mr. Sumit Garg.")
+                
+            elif 'play' in command:
                 song = command.replace('play', '').strip()
                 speak(f"Playing {song} on YouTube.")
                 webbrowser.open(f"https://www.youtube.com/results?search_query={song}")
@@ -69,9 +76,11 @@ def alexa(request):
             # Handle 'open' command (simplified to open websites or apps)
             elif 'open' in command:
                 app = command.replace('open', '').strip()
-
+                if 'youtube' in app:
+                    speak("Opening YouTube")
+                    webbrowser.open("https://www.youtube.com/")
                 # Open WhatsApp Web
-                if 'whatsapp' in app:
+                elif 'whatsapp' in app:
                     speak("Opening WhatsApp")
                     webbrowser.open("https://web.whatsapp.com/")
 
